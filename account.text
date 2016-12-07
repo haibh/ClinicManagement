@@ -1,0 +1,3 @@
+admin:  postgres
+pass:   postgres123456
+port:   5432

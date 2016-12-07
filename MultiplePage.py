@@ -1,4 +1,5 @@
 import Tkinter as tk   # python3
+import psycopg2
 #import Tkinter as tk   # python
 
 TITLE_FONT = ("Helvetica", 18, "bold")
