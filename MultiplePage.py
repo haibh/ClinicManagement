@@ -1,6 +1,7 @@
-import Tkinter as tk   # python3
-import psycopg2
-#import Tkinter as tk   # python
+# import Tkinter as tk   # python3
+import Tkinter as tk   # python
+
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 TITLE_FONT = ("Helvetica", 18, "bold")
 
