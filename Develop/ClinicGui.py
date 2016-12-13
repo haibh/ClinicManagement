@@ -42,15 +42,19 @@ class LoginPage(tk.Frame):
 
         bgclr = "#282828"
         fgclr = "#cecece"
-        # clr = '#004a95'
+        clr = '#004a95'
 
-        self.users = [("kiman", "phongmachbacsi")]
+        tk.Frame.config(self, bg=bgclr)
+        # tk.Tk.resizable(True, False)
+
+        self.users = [("kiman", "bacsi"), ("1", "1")]
 
         self.user_label = tk.Label(self, text="Username", font=("blod", 15), bg=bgclr, fg=fgclr)
         self.user_label.place(x=20, y=40)
 
-        self.user_entry = tk.Entry(self, bg=bgclr, width=40, font=10, bd=5)
+        self.user_entry = tk.Entry(self, bg=bgclr, fg="white", width=40, font=10, bd=5)
         self.user_entry.place(x=20, y=80)
+        self.user_entry.focus()
 
         self.password_label = tk.Label(self, text="Password", font=("blod", 15), bg=bgclr, fg=fgclr)
         self.password_label.place(x=20, y=120)
@@ -64,12 +68,16 @@ class LoginPage(tk.Frame):
         self.login_button = tk.Button(self, text="Login", width="40", font=10, command=self.login)
         self.login_button.place(x=80, y=200)
 
+        # # Enter to login
+        self.password_entry.bind('<Enter>', self.login)
+
     def login(self):
         if (self.user_entry.get(), self.password_entry.get()) in self.users:
             self.controller.show_frame("PatientPage")
             print("Login OK")
         else:
             self.warn_label.config(text="Invalid username or Password", fg="red")
+            print(self.user_entry.get(), self.password_entry.get())
             print("Login Failed")
 
 
