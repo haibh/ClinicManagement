@@ -1,5 +1,9 @@
-# import Tkinter as tk   # python3
-import Tkinter as tk  # python
+import sys
+
+if sys.version_info[0] == 2:
+    import Tkinter as tk
+else:
+    import tkinter as tk
 
 TITLE_FONT = ("Helvetica", 18, "bold")
 
@@ -8,10 +12,14 @@ class ClinicApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
+        self.screen_width = tk.Tk.winfo_screenwidth(self)
+        self.screen_height = tk.Tk.winfo_screenheight(self)
+        print(self.screen_width, self.screen_height)
+
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
+        container.grid_rowconfigure(1, weight=1)
+        container.grid_columnconfigure(1, weight=1)
 
         self.frame = {}
         for F in (LoginPage, PatientPage, PharmaPage):
@@ -29,7 +37,7 @@ class ClinicApp(tk.Tk):
 
 class LoginPage(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent, width=1800, height=1000)
         self.controller = controller
 
         bgclr = "#282828"
@@ -53,14 +61,16 @@ class LoginPage(tk.Frame):
         self.warn_label = tk.Label(self, font=("blod", 10), bg=bgclr)
         self.warn_label.place(x=80, y=200)
 
-        self.login_button = tk.Button(self, text="Login", width="40", font=10, command=self.login())
+        self.login_button = tk.Button(self, text="Login", width="40", font=10, command=self.login)
         self.login_button.place(x=80, y=200)
 
     def login(self):
         if (self.user_entry.get(), self.password_entry.get()) in self.users:
-            self.controller.show_frame("PationPage")
+            self.controller.show_frame("PatientPage")
+            print("Login OK")
         else:
             self.warn_label.config(text="Invalid username or Password", fg="red")
+            print("Login Failed")
 
 
 class PatientPage(tk.Frame):
