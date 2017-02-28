@@ -69,7 +69,7 @@ class LoginPage(tk.Frame):
         self.login_button.place(x=80, y=200)
 
         # # Enter to login
-        # self.password_entry.bind('<Enter>', self.login) # Still have error
+        self.password_entry.bind('<Enter>', self.login)  # Still have error
 
 
     def login(self):
