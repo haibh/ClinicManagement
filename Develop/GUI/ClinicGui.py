@@ -1,5 +1,4 @@
 import sys
-from .GUI.ClinicApp import ClinicApp
 from .LoginPage import LoginPage
 from .PatientPage import PatientPage
 from .PharmaPage import PharmaPage
