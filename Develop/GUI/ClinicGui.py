@@ -1,16 +1,16 @@
 import sys
-from .GUI.LoginPage import LoginPage
-from .GUI.PatientPage import PatientPage
-from .GUI.PharmaPage import PharmaPage
+from .GUI.ClinicApp import ClinicApp
+from .LoginPage import LoginPage
+from .PatientPage import PatientPage
+from .PharmaPage import PharmaPage
+
 if sys.version_info[0] == 2:
     import Tkinter as tk
 else:
     import tkinter as tk
 
-
-
-
 TITLE_FONT = ("Helvetica", 18, "bold")
+
 
 class ClinicApp(tk.Tk):
     def __init__(self, *args, **kwargs):
