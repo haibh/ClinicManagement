@@ -102,7 +102,6 @@ class PharmaPage(tk.Frame):
         button.pack()
 
 
-
 if __name__ == "__main__":
     app = ClinicApp()
     app.mainloop()
