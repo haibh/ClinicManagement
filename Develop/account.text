@@ -1,0 +1,19 @@
+admin:  postgres
+pass:   postgres123456
+port:   5432
+
+=====================================
+Medicine:
+Mã          - MedicineID
+Tên Thuốc   - MedicineName
+hoạt Chất   - MedicineActiveElement
+đơn vị      - MedicineUnit
+Tổn         - MedicineInventory
+==================================
+Thông tin khám bệnh:
+
+Mã                  - PatientID
+Mô tả bệnh          - PatientDescription
+Chẩn đoán           - PatientDiagnostic
+Tiền căn            - PatientHistory
+Tiền căn gia đình   - PatientFamilyHistory

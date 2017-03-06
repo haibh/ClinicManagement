@@ -68,7 +68,7 @@ class LoginPage(tk.Frame):
         self.login_button.place(x=80, y=200)
 
         # # Enter to login
-        self.password_entry.bind('<Enter>', self.login)  # Still have error
+        # self.password_entry.bind('<Enter>', self.login)  # Still have error
 
     def login(self):
         if (self.user_entry.get(), self.password_entry.get()) in self.users:
@@ -97,9 +97,23 @@ class PharmaPage(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="quản lý thuốc", font=TITLE_FONT)
         label.pack(side="top", fill="x", pady=10)
+
+
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("LoginPage"))
         button.pack()
+
+
+
+        MedicineID_label = tk.Label(self, text="Mã thuốc:", font=TITLE_FONT)
+        # MedicineID_label.pack(row=1, column=0)
+        MedicineID_label.pack()
+
+
+        MedicineID_text = tk.StringVar()
+        MedicineID_entry = tk.Entry(self, textvariable=MedicineID_text)
+        # MedicineID_entry.pack(row=1, column=1)
+        MedicineID_entry.pack()
 
 
 

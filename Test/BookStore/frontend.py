@@ -1,5 +1,4 @@
-from Tkinter import *
-import backend
+from tkinter import *
 
 
 window = Tk()
@@ -38,8 +37,6 @@ list1.grid(row=2, column=0, rowspan=6, columnspan=2)
 sb1 = Scrollbar(window)
 sb1.grid(row=2, column=2, rowspan=6)
 
-# list1.configure(yscrollcommand=sb1.set)
-# sb1.configure(command=list1.yview)
 
 b1 = Button(window, text="View All", width=12)
 b1.grid(row=2,column=3)
