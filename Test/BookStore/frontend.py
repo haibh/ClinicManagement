@@ -90,22 +90,22 @@ list1.bind('<<ListboxSelect>>', get_selected_row)
 
 
 b1 = Button(window, text="View All", width=12, command=view_command)
-b1.grid(row=2,column=3)
+b1.grid(row=2, column=3)
 
 b2 = Button(window, text="Search Entry", width=12, command=search_command)
-b2.grid(row=3,column=3)
+b2.grid(row=3, column=3)
 
 b3 = Button(window, text="Add Entry", width=12, command=insert_command)
-b3.grid(row=4,column=3)
+b3.grid(row=4, column=3)
 
 b4 = Button(window, text="Update", width=12, command=update_command)
-b4.grid(row=5,column=3)
+b4.grid(row=5, column=3)
 
 b5 = Button(window, text="Delete", width=12, command=delete_command)
-b5.grid(row=6,column=3)
+b5.grid(row=6, column=3)
 
 b6 = Button(window, text="Exit", width=12, command=window.destroy)
-b6.grid(row=7,column=3)
+b6.grid(row=7, column=3)
 
 
 window.mainloop()
