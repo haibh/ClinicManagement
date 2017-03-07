@@ -3,24 +3,25 @@ pass:   postgres123456
 port:   5432
 
 =====================================
-Medicine:
-Mã          - MedicineCode
-Tên Thuốc   - MedicineName
-hoạt Chất   - MedicineActiveElement
-đơn vị      - MedicineUnit
-Tổn         - MedicineInventory
+medicine:
+Mã          - medicineCode
+Tên Thuốc   - medicineName
+hoạt Chất   - medicineActiveElement
+đơn vị      - medicineUnit
+Tổn         - medicineInventory
 ==================================
 Thông tin khám bệnh:
 
-Mã                  - PatientID
-Họ Tên              - PatientName
-Điện thoại          - PatientPhone
-Tuổi                - PatientAge
-Năm sinh            - PatientBirthYear
-Mô tả bệnh          - PatientDescription
-Chẩn đoán           - PatientDiagnostic
-Tiền căn            - PatientHistory
-Tiền căn gia đình   - PatientFamilyHistory
+CMND                - patientID
+Họ Tên              - patientName
+Điện thoại          - patientPhone
+Tuổi                - patientAge
+Năm sinh            - patientBirthYear
+Tiền căn            - patientHistory
+Tiền căn gia đình   - patientFamilyHistory
+Mô tả bệnh          - patientDescription
+Chẩn đoán           - patientDiagnostic
+
 
 
 pyinstaller --onefile --windowed ClicnicApp.py
