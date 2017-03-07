@@ -55,3 +55,4 @@ connect()
 # insert("Sach21342","BHH1234",19853,91232344981234)
 
 print(view())
+print(search(title="Sach"))

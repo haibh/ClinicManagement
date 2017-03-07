@@ -1,8 +1,14 @@
 import sys
+from Develop import PharmacyFunction
+
 if sys.version_info[0] == 2:
     import Tkinter as tk
 else:
     import tkinter as tk
+
+
+PharmacyFunction.connect()
+
 
 TITLE_FONT = ("Helvetica", 18, "bold")
 LABEL_FONT = 'Arial'
@@ -15,7 +21,7 @@ class ClinicApp(tk.Tk):
 
         self.screen_width = tk.Tk.winfo_screenwidth(self)
         self.screen_height = tk.Tk.winfo_screenheight(self)
-        print(self.screen_width, self.screen_height)
+        # print(self.screen_width, self.screen_height)
 
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
@@ -39,7 +45,8 @@ class ClinicApp(tk.Tk):
 
 class LoginPage(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, width=1800, height=1000)
+        # tk.Frame.__init__(self, parent, width=1800, height=1000)
+        tk.Frame.__init__(self, parent)
         self.controller = controller
 
         bgclr = "#282828"
@@ -98,60 +105,82 @@ class PharmaPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="quản lý thuốc", font=TITLE_FONT)
+        label = tk.Label(self, text="QUẢN LÝ THUỐC", font=TITLE_FONT)
         # label.pack(side="top", fill="x", pady=10)
         label.grid(row=0, column=1)
 
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, text="Về trang đăng nhập",
                            command=lambda: controller.show_frame("LoginPage"))
         button.grid(row=1, column=1)
 
+        bgclr = "#282828"
+        fgclr = "#cecece"
+        clr = '#004a95'
+
+        medicineCode_label = tk.Label(self, text="Mã thuốc:", font=(LABEL_FONT, LABEL_FONT_SIZE))
+        medicineCode_label.grid(row=2, column=0)
+        medicineCode_text = tk.StringVar()
+        medicineCode_entry = tk.Entry(self, textvariable=medicineCode_text)
+        medicineCode_entry.grid(row=2, column=1, columnspan=5)
+
+        medicineName_label = tk.Label(self, text="Tên thuốc:", font=(LABEL_FONT, LABEL_FONT_SIZE))
+        medicineName_label.grid(row=3, column=0)
+        medicineName_text = tk.StringVar()
+        medicineName_entry = tk.Entry(self, textvariable=medicineName_text)
+        medicineName_entry.grid(row=3, column=1, columnspan=5)
+
+        medicineActiveElement_label = tk.Label(self, text="Hoạt chất:", font=(LABEL_FONT, LABEL_FONT_SIZE))
+        medicineActiveElement_label.grid(row=4, column=0)
+        medicineActiveElement_text = tk.StringVar()
+        medicineActiveElement_entry = tk.Entry(self, textvariable=medicineActiveElement_text)
+        medicineActiveElement_entry.grid(row=4, column=1, columnspan=5)
+
+        medicineUnit_label = tk.Label(self, text="Đơn vị:", font=(LABEL_FONT, LABEL_FONT_SIZE))
+        medicineUnit_label.grid(row=5, column=0)
+        medicineUnit_text = tk.StringVar()
+        medicineUnit_entry = tk.Entry(self, textvariable=medicineUnit_text)
+        medicineUnit_entry.grid(row=5, column=1, columnspan=5)
+
+        medicineInventory_label = tk.Label(self, text="Tồn kho:", font=(LABEL_FONT, LABEL_FONT_SIZE))
+        medicineInventory_label.grid(row=6, column=0)
+        medicineInventory_text = tk.StringVar()
+        medicineInventory_entry = tk.Entry(self, textvariable=medicineInventory_text)
+        medicineInventory_entry.grid(row=6, column=1, columnspan=5)
 
 
-        MedicineID_label = tk.Label(self, text="Mã thuốc:", font=(LABEL_FONT, LABEL_FONT_SIZE))
-        MedicineID_label.grid(row=2, column=0)
-        MedicineID_text = tk.StringVar()
-        MedicineID_entry = tk.Entry(self, textvariable=MedicineID_text)
-        MedicineID_entry.grid(row=2, column=1, columnspan=5)
+        # medicineList = tk.Listbox(self, height=6, width=50)
+        self.medicineList = tk.Listbox(self)
+        self.medicineList.grid(row=2, column=5, rowspan=5, columnspan=5)
 
-        MedicineName_label = tk.Label(self, text="Tên thuốc:", font=(LABEL_FONT, LABEL_FONT_SIZE))
-        MedicineName_label.grid(row=3, column=0)
-        MedicineName_text = tk.StringVar()
-        MedicineName_entry = tk.Entry(self, textvariable=MedicineName_text)
-        MedicineName_entry.grid(row=3, column=1, columnspan=5)
+        self.medicineScrollBox = tk.Scrollbar(self)
+        self.medicineScrollBox.grid(row=2, column=13, rowspan=10)
 
-        MedicineActiveElement_label = tk.Label(self, text="Hoạt chất:", font=(LABEL_FONT, LABEL_FONT_SIZE))
-        MedicineActiveElement_label.grid(row=4, column=0)
-        MedicineActiveElement_text = tk.StringVar()
-        MedicineActiveElement_entry = tk.Entry(self, textvariable=MedicineActiveElement_text)
-        MedicineActiveElement_entry.grid(row=4, column=1, columnspan=5)
+        self.medicineList.configure(yscrollcommand=self.medicineScrollBox.set)
+        self.medicineScrollBox.configure(command=self.medicineList.yview)
 
-        MedicineUnit_label = tk.Label(self, text="Đơn vị:", font=(LABEL_FONT, LABEL_FONT_SIZE))
-        MedicineUnit_label.grid(row=5, column=0)
-        MedicineUnit_text = tk.StringVar()
-        MedicineUnit_entry = tk.Entry(self, textvariable=MedicineUnit_text)
-        MedicineUnit_entry.grid(row=5, column=1, columnspan=5)
+        viewButton = tk.Button(self, text="Xem tất cả", width=12, bg=bgclr, fg=fgclr, command=self.view_command)
+        viewButton.grid(row=7, column=0)
 
-        MedicineInventory_label = tk.Label(self, text="Tồn kho:", font=(LABEL_FONT, LABEL_FONT_SIZE))
-        MedicineInventory_label.grid(row=6, column=0)
-        MedicineInventory_text = tk.StringVar()
-        MedicineInventory_entry = tk.Entry(self, textvariable=MedicineInventory_text)
-        MedicineInventory_entry.grid(row=6, column=1, columnspan=5)
+        searchButton = tk.Button(self, text="Tìm kiếm", width=12, bg=bgclr, fg=fgclr)
+        searchButton.grid(row=7, column=1)
 
+        addButton = tk.Button(self, text="Thêm mới", width=12, bg=bgclr, fg=fgclr)
+        addButton.grid(row=7, column=2)
 
-        MedicineList = tk.Listbox(self, height=6, width=50)
-        MedicineList.grid(row=2, column=3, rowspan=10)
+        deleteButton = tk.Button(self, text="Xóa dữ liệu", width=12, bg=bgclr, fg=fgclr)
+        deleteButton.grid(row=7, column=3)
 
-        MedicineScrollBox = tk.Scrollbar(self)
-        MedicineScrollBox.grid(row=2, column=3, rowspan=10)
+        # medicineList.bind('<<ListboxSelect>>', self.get_selected_row)
 
-        # MedicineList.configure(yscrollcommand=MedicineList.set)
-        # MedicineScrollBox.configure(command=MedicineList.yview)
+    def view_command(self):
+        self.medicineList.delete(0, END)
+        for row in PharmacyFunction.view():
+            self.medicineList.insert(END, row)
 
-        # MedicineList.bind('<<ListboxSelect>>', self.get_selected_row)
+    def get_pharmacy_selected_row(self):
+        global pharmacy_selected_tuple
+        # index = self.medicineList.curselection()[0]
 
-    def get_selected_row(self):
-        pass
 
 if __name__ == "__main__":
     app = ClinicApp()
