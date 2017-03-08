@@ -97,12 +97,13 @@ class PatientPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=500, height=600)
         self.controller = controller
-        label = tk.Label(self, text="QUẢN LÝ BỆNH NHÂN", font=TITLE_FONT)
-        # label.pack(side="top", fill="x", pady=10)
-        label.grid(row=0, column=1)
-        button = tk.Button(self, text="Đến quản lý thuốc",
-                           command=lambda: controller.show_frame("PharmaPage"))
-        button.grid(row=1, column=1)
+
+        # label = tk.Label(self, text="QUẢN LÝ BỆNH NHÂN", font=TITLE_FONT)
+        # # label.pack(side="top", fill="x", pady=10)
+        # label.grid(row=0, column=1)
+        # button = tk.Button(self, text="Đến quản lý thuốc",
+        #                    command=lambda: controller.show_frame("PharmaPage"))
+        # button.grid(row=1, column=1)
         
         bgclr = "#282828"
         fgclr = "#cecece"
@@ -112,10 +113,10 @@ class PatientPage(tk.Frame):
         self.patientID_label.grid(row=2, column=0)
         self.patientID_text = tk.StringVar()
         self.patientID_entry = tk.Entry(self, textvariable=self.patientID_text)
-        self.patientID_entry.grid(row=2, column=1, columnspan=5)
+        self.patientID_entry.grid(row=2, column=6, columnspan=5)
 
         self.patientName_label = tk.Label(self, text="Họ Tên:", font=(LABEL_FONT, LABEL_FONT_SIZE))
-        self.patientName_label.grid(row=2, column=6)
+        self.patientName_label.grid(row=2, column=0)
         self.patientName_text = tk.StringVar()
         self.patientName_entry = tk.Entry(self, textvariable=self.patientName_text)
         self.patientName_entry.grid(row=2, column=7, columnspan=15)
@@ -221,6 +222,7 @@ class PatientPage(tk.Frame):
         global patient_selected_tuple
         index = self.patientList.curselection()[0]
         patient_selected_tuple = self.patientList.get(index)
+
         self.patientID_entry.delete(0, tk.END)
         self.patientID_entry.insert(tk.END, patient_selected_tuple[1])
 
@@ -259,8 +261,8 @@ class PharmaPage(tk.Frame):
         # label.pack(side="top", fill="x", pady=10)
         label.grid(row=0, column=1)
 
-        button = tk.Button(self, text="Về trang đăng nhập",
-                           command=lambda: controller.show_frame("LoginPage"))
+        button = tk.Button(self, text="Đến quản lý bệnh nhân",
+                           command=lambda: controller.show_frame("PatientPage"))
         button.grid(row=1, column=1)
 
         bgclr = "#282828"

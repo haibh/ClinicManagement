@@ -1,45 +1,17 @@
-import sqlite3
+import sys
 
-def create_table():
-    conn = sqlite3.connect("lite.db")
-    cur = conn.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS store (item TEXT, quantity INTERGER, price REAL)")
-    conn.commit()
-    conn.close()
 
-def insert(item, quantity, price):
-    conn = sqlite3.connect("lite.db")
-    cur = conn.cursor()
-    cur.execute("INSERT INTO store VALUES (?,?,?)",(item,quantity,price))
-    conn.commit()
-    conn.close()
+if sys.version_info[0] == 2:
+    import Tkinter as tk
+else:
+    import tkinter as tk
 
-def view():
-    conn = sqlite3.connect("lite.db")
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM store")
-    rows = cur.fetchall()
-    conn.commit()
-    conn.close()
-    return rows
 
-def delete(item):
-    conn = sqlite3.connect("lite.db")
-    cur = conn.cursor()
-    cur.execute("DELETE FROM store WHERE item=?",(item))
-    rows = cur.fetchall()
-    conn.commit()
-    conn.close()
-    return rows
+Label(master, text="First").grid(row=0)
+Label(master, text="Second").grid(row=1)
 
-def update(quantity, price, item):
-    conn = sqlite3.connect("lite.db")
-    cur = conn.cursor()
-    cur.execute("UPDATE store SET quantity=?, price=? WHERE item=?",(quantity,price,item))
-    rows = cur.fetchall()
-    conn.commit()
-    conn.close()
-    return rows
+e1 = Entry(master)
+e2 = Entry(master)
 
-print(view())
-# insert("lasdfasfsadfasdfsafd",1000,500)
+e1.grid(row=0, column=1)
+e2.grid(row=1, column=1)
