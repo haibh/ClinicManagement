@@ -162,12 +162,15 @@ class PatientPage(tk.Frame):
         self.patientHistory_label.grid(row=0, column=0)
         self.patientHistory_text = tk.StringVar()
         self.patientHistory_entry = tk.Entry(PatientHistory_LabelFrame, textvariable=self.patientHistory_text, width=100)
+        # self.patientHistory_entry = tk.Text(PatientHistory_LabelFrame, width=80, height=5)
+
         self.patientHistory_entry.grid(row=0, column=1, columnspan=7, ipady=25)
 
         self.patientFamilyHistory_label = tk.Label(PatientHistory_LabelFrame, text="Tiền căn gia đình:", font=(LABEL_FONT, LABEL_FONT_SIZE))
         self.patientFamilyHistory_label.grid(row=1, column=0)
         self.patientFamilyHistory_text = tk.StringVar()
         self.patientFamilyHistory_entry = tk.Entry(PatientHistory_LabelFrame, textvariable=self.patientFamilyHistory_text, width=100)
+        # self.patientFamilyHistory_entry = tk.Text(PatientHistory_LabelFrame, width=80, height=5)
         self.patientFamilyHistory_entry.grid(row=1, column=1, columnspan=7, ipady=25)
 
         '''
