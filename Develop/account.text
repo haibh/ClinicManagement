@@ -24,4 +24,6 @@ Chẩn đoán           - patientDiagnostic
 
 
 
+
+
 pyinstaller --onefile --windowed ClicnicApp.py
